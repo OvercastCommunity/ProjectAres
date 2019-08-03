@@ -8,6 +8,7 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Skin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerSkinPartsChangeEvent;
+import org.bukkit.plugin.Plugin;
 import tc.oc.commons.bukkit.chat.NameStyle;
 import tc.oc.commons.bukkit.chat.PlayerComponent;
 import tc.oc.commons.bukkit.nick.Identity;
@@ -92,10 +93,12 @@ public class PlayerTabEntry extends DynamicTabEntry {
     }
 
     // Dispatched by TabManager
-    protected void onSkinPartsChange(PlayerSkinPartsChangeEvent event) {
-        if(this.player == event.getPlayer()) {
-            this.updateFakeEntity();
-        }
+    protected void onSkinPartsChange(Plugin plugin, PlayerSkinPartsChangeEvent event) {
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+            if(this.player == event.getPlayer()) {
+                this.updateFakeEntity();
+            }
+        }, 10L);
     }
 
     @Override

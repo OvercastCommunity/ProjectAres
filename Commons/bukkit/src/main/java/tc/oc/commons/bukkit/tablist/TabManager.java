@@ -153,7 +153,7 @@ public class TabManager implements Listener {
     public void onSkinPartsChange(PlayerSkinPartsChangeEvent event) {
         TabEntry entry = this.getPlayerEntryOrNull(event.getPlayer());
         if(entry instanceof PlayerTabEntry) {
-            ((PlayerTabEntry) entry).onSkinPartsChange(event);
+            ((PlayerTabEntry) entry).onSkinPartsChange(plugin, event);
         }
     }
 }
