@@ -15,7 +15,7 @@ public class DeathMessageSetting {
                      "FRIENDS: show friend death messages\n" +
                      "OWN: show own death messages\n")
         .type(new EnumType<>("Death Message Options", Options.class))
-        .defaultValue(Options.FRIENDS).get();
+        .defaultValue(Options.ALL).get();
 
     public static Setting get() {
         return inst;

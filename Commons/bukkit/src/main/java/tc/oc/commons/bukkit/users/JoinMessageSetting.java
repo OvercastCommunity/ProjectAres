@@ -15,7 +15,7 @@ public class JoinMessageSetting {
                      "FRIENDS: messages from friends\n" +
                      "NONE: no messages\n")
         .type(new EnumType<>("Join Message Options", Options.class))
-        .defaultValue(Options.FRIENDS)
+        .defaultValue(Options.ALL)
         .get();
 
     public static Setting get() {
