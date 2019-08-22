@@ -25,8 +25,6 @@ import tc.oc.commons.bukkit.chat.TranslatableComponentRenderer;
 import tc.oc.commons.bukkit.chat.UserTextComponent;
 import tc.oc.commons.bukkit.chat.UserTextComponentRenderer;
 import tc.oc.commons.bukkit.commands.PermissionCommands;
-import tc.oc.commons.bukkit.commands.ServerCommands;
-import tc.oc.commons.bukkit.commands.ServerVisibilityCommands;
 import tc.oc.commons.bukkit.commands.SkinCommands;
 import tc.oc.commons.bukkit.commands.TraceCommands;
 import tc.oc.commons.bukkit.commands.UserFinder;
@@ -164,8 +162,6 @@ public final class CommonsBukkitManifest extends HybridManifest {
         facets.register(ResourcePackCommands.Parent.class);
         facets.register(ResourcePackListener.class);
         facets.register(RestartCommands.class);
-        facets.register(ServerCommands.class);
-        facets.register(ServerVisibilityCommands.class);
         facets.register(SessionListener.class);
         facets.register(SkinCommands.class);
         facets.register(SkinCommands.Parent.class);
