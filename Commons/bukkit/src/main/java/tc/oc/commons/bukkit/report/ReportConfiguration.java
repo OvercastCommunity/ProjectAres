@@ -16,11 +16,11 @@ public class ReportConfiguration {
     }
 
     public boolean enabled() {
-        return config.getBoolean("reports.enabled", false);
+        return config.getBoolean("reports.enabled", true);
     }
 
     public Duration cooldown() {
-        return ConfigUtils.getDuration(config, "reports.cooldown", Duration.ZERO);
+        return ConfigUtils.getDuration(config, "reports.cooldown", Duration.ofMinutes(5));
     }
 
     public List<String> families() {
