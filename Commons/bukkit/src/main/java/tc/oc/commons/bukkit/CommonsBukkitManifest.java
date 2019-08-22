@@ -58,7 +58,6 @@ import tc.oc.commons.bukkit.nick.PlayerAppearanceChanger;
 import tc.oc.commons.bukkit.nick.PlayerAppearanceListener;
 import tc.oc.commons.bukkit.nick.PlayerOrder;
 import tc.oc.commons.bukkit.nick.PlayerOrderCache;
-import tc.oc.commons.bukkit.punishment.PunishmentManifest;
 import tc.oc.commons.bukkit.raindrops.RaindropManifest;
 import tc.oc.commons.bukkit.report.ReportCommands;
 import tc.oc.commons.bukkit.respack.ResourcePackCommands;
@@ -109,7 +108,6 @@ public final class CommonsBukkitManifest extends HybridManifest {
         install(new LocalizationManifest());
         install(new NavigatorManifest());
         install(new RaindropManifest());
-        install(new PunishmentManifest());
 
         // These are already bound as facets, so they only need to be exposed
         expose(PlayerFreezer.class);
