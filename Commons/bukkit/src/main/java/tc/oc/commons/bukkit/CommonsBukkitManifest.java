@@ -29,7 +29,6 @@ import tc.oc.commons.bukkit.commands.ServerCommands;
 import tc.oc.commons.bukkit.commands.ServerVisibilityCommands;
 import tc.oc.commons.bukkit.commands.SkinCommands;
 import tc.oc.commons.bukkit.commands.TraceCommands;
-import tc.oc.commons.bukkit.commands.UserCommands;
 import tc.oc.commons.bukkit.commands.UserFinder;
 import tc.oc.commons.bukkit.debug.LeakListener;
 import tc.oc.commons.bukkit.event.targeted.TargetedEventManifest;
@@ -178,7 +177,6 @@ public final class CommonsBukkitManifest extends HybridManifest {
         facets.register(TrophyCommands.Parent.class);
         facets.register(TraceCommands.class);
         facets.register(TraceCommands.Parent.class);
-        facets.register(UserCommands.class);
         facets.register(Whitelist.class);
         facets.register(WhitelistCommands.class);
         facets.register(WhitelistCommands.Parent.class);
