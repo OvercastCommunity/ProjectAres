@@ -35,7 +35,6 @@ import tc.oc.api.util.Permissions;
 import tc.oc.commons.bukkit.chat.ComponentRenderContext;
 import tc.oc.commons.bukkit.event.AsyncUserLoginEvent;
 import tc.oc.commons.bukkit.event.UserLoginEvent;
-import tc.oc.commons.bukkit.punishment.PunishmentFormatter;
 import tc.oc.commons.bukkit.util.PermissionUtils;
 import tc.oc.commons.core.chat.Component;
 import tc.oc.commons.core.concurrent.Locker;
@@ -59,7 +58,6 @@ public class LoginListener implements Listener, PluginFacet {
     private final UserService userService;
     private final BukkitUserStore userStore;
     private final ComponentRenderContext renderer;
-    private final PunishmentFormatter punishmentFormatter;
 
     private boolean connected;
     private final ReadWriteLock connectedLock = new ReentrantReadWriteLock();
@@ -69,7 +67,7 @@ public class LoginListener implements Listener, PluginFacet {
                                                                   .expireAfterWrite(1, TimeUnit.MINUTES)
                                                                   .build();
 
-    @Inject LoginListener(Loggers loggers, Plugin plugin, EventBus eventBus, Scheduler scheduler, MinecraftService minecraftService, UserService userService, BukkitUserStore userStore, ComponentRenderContext renderer, PunishmentFormatter punishmentFormatter) {
+    @Inject LoginListener(Loggers loggers, Plugin plugin, EventBus eventBus, Scheduler scheduler, MinecraftService minecraftService, UserService userService, BukkitUserStore userStore, ComponentRenderContext renderer) {
         this.eventBus = eventBus;
         this.logger = loggers.get(getClass());
         this.scheduler = scheduler;
@@ -78,7 +76,6 @@ public class LoginListener implements Listener, PluginFacet {
         this.userStore = userStore;
         this.plugin = plugin;
         this.renderer = renderer;
-        this.punishmentFormatter = punishmentFormatter;
     }
 
     @Override
@@ -161,9 +158,6 @@ public class LoginListener implements Listener, PluginFacet {
 
             applyPermissions(player, response.user());
 
-            if(response.punishment() != null) {
-                rejectLogin(event, punishmentFormatter.screen(response.punishment()));
-            }
 
             if(!player.hasPermission(Permissions.LOGIN)) {
                 rejectLogin(event, new TranslatableComponent("servers.notAllowed"));
