@@ -3,6 +3,25 @@ ProjectAres
 
 Custom Bukkit/Bungee plugins used by the former Overcast Network
 
+
+# Install
+
+1. Clone and install `Universe` to download the required dependencies.
+```bash
+git clone git@github.com:Electroid/Universe.git
+cd Universe
+git submodule update --init
+mvn clean install
+```
+
+2. Clone and install `ProjectAres` to build the suite of plugins.
+```bash
+cd ..
+git clone git@github.com:OvercastNetwork/ProjectAres.git
+cd ProjectAres
+mvn clean install
+```
+
 # License
 
 ProjectAres is free software: you can redistribute it and/or modify it
