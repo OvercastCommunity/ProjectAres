@@ -16,7 +16,7 @@ mvn clean install
 2. Clone and install `ProjectAres` to build the suite of plugins.
 ```bash
 cd ..
-git clone git@github.com:OvercastNetwork/ProjectAres.git
+git clone git@github.com:ProjectEnyo/ProjectAres.git
 cd ProjectAres
 mvn clean install
 ```
