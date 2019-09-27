@@ -11,5 +11,5 @@ public class PickerSettings {
         .name("Picker").alias("pkr")
         .summary("Open a helpful GUI for picking classes and teams")
         .type(new BooleanType())
-        .defaultValue(true).get();
+        .defaultValue(false).get();
 }
