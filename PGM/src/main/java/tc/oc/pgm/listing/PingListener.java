@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -25,6 +26,8 @@ public class PingListener implements Listener, Enableable {
     @EventHandler
     private void onPing(ServerListPingEvent event) {
         event.getExtra().put("pgm", new Info());
+        String currentMap = matchProvider.get().getMap().getName();
+        event.setMotd(ChatColor.GOLD + "» " + ChatColor.AQUA + currentMap + ChatColor.GOLD + " «");
     }
 
     private class Info {
