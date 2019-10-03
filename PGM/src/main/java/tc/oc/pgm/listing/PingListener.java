@@ -25,6 +25,7 @@ public class PingListener implements Listener, Enableable {
     @EventHandler
     private void onPing(ServerListPingEvent event) {
         event.getExtra().put("pgm", new Info());
+        event.setMotd(matchProvider.get().getMap().getName());
     }
 
     private class Info {
