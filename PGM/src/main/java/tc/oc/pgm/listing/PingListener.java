@@ -29,7 +29,7 @@ public class PingListener implements Listener, Enableable {
         event.setMotd(matchProvider.get().getMap().getName());
 
         String currentMap = matchProvider.get().getMap().getName();
-        event.setMotd(ChatColor.GOLD + "»" + ChatColor.AQUA + currentMap + ChatColor.GOLD + "«");
+        event.setMotd(ChatColor.GOLD + "» " + ChatColor.AQUA + currentMap + ChatColor.GOLD + " «");
     }
 
     private class Info {
