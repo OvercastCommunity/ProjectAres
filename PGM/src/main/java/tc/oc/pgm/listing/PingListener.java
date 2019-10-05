@@ -27,7 +27,7 @@ public class PingListener implements Listener, Enableable {
     private void onPing(ServerListPingEvent event) {
         event.getExtra().put("pgm", new Info());
         String currentMap = matchProvider.get().getMap().getName();
-        event.setMotd(ChatColor.GOLD + "» " + ChatColor.AQUA + currentMap + ChatColor.GOLD + " «");
+        event.setMotd(ChatColor.DARK_GRAY + "Now playing:\n" + ChatColor.GOLD + "» " + ChatColor.AQUA + currentMap + ChatColor.GOLD + " «");
     }
 
     private class Info {
