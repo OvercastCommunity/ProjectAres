@@ -21,7 +21,6 @@ public class Settings extends HybridManifest {
         settings.addBinding().toInstance(BLOOD);
         settings.addBinding().toInstance(RATINGS);
         settings.addBinding().toInstance(SOUNDS);
-        settings.addBinding().toInstance(ARROW_TRAIL);
 
         bindAndExpose(ObserversCallback.class).in(Singleton.class);
         new SettingCallbackBinder(publicBinder())
@@ -45,10 +44,4 @@ public class Settings extends HybridManifest {
         .summary("Hear sounds to alert you of the last three seconds of a countdown")
         .type(new BooleanType())
         .defaultValue(true).get();
-
-    public static final Setting ARROW_TRAIL = new SettingBuilder()
-            .name("ArrowTrail").alias("arrow").alias("at")
-            .summary("See trail when you shoot arrows")
-            .type(new BooleanType())
-            .defaultValue(false).get();
 }

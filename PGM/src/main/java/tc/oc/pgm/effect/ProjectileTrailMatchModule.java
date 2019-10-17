@@ -3,7 +3,6 @@ package tc.oc.pgm.effect;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,16 +10,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.metadata.FixedMetadataValue;
-import tc.oc.commons.bukkit.settings.SettingManagerProvider;
 import tc.oc.pgm.PGM;
 import tc.oc.pgm.events.ListenerScope;
 import tc.oc.pgm.match.MatchModule;
 import tc.oc.pgm.match.MatchScope;
 import tc.oc.pgm.match.Repeatable;
-import tc.oc.pgm.settings.Settings;
 import tc.oc.pgm.utils.EntityUtils;
-
-import javax.inject.Inject;
 
 /**
  * Change the default projectile particle trails with a colored
@@ -29,14 +24,8 @@ import javax.inject.Inject;
 @ListenerScope(MatchScope.RUNNING)
 public class ProjectileTrailMatchModule extends MatchModule implements Listener {
 
-    private final SettingManagerProvider settings;
-
     private static final String TRAIL_META = "projectile_trail_color";
     private static final String CRITICAL_META = "arrow_is_critical";
-
-    @Inject ProjectileTrailMatchModule(SettingManagerProvider settings) {
-        this.settings = settings;
-    }
 
     @Repeatable(scope = MatchScope.RUNNING)
     public void tick() {
@@ -68,26 +57,19 @@ public class ProjectileTrailMatchModule extends MatchModule implements Listener 
         return Math.max(0.001, rgb / 255.0);
     }
 
-    public boolean showTrail(Player player) {
-        return settings.getManager(player).getValue(Settings.ARROW_TRAIL, Boolean.class);
-    }
-
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
-        if (showTrail((Player) event.getActor())) {
-            match.player(event.getActor()).ifPresent(shooter -> {
-                final Projectile projectile = event.getEntity();
-                projectile.setMetadata(TRAIL_META, new FixedMetadataValue(PGM.get(), shooter.getParty().getFullColor()));
-                // Set critical metadata to false in order to remove default particle trail.
-                // The metadata will be restored just before the arrow hits something.
-                if (projectile instanceof Arrow) {
-                    final Arrow arrow = (Arrow) projectile;
-                    arrow.setMetadata(CRITICAL_META, new FixedMetadataValue(PGM.get(), arrow.isCritical()));
-                    arrow.setCritical(false);
-
-                }
-            });
-        }
+        match.player(event.getActor()).ifPresent(shooter -> {
+            final Projectile projectile = event.getEntity();
+            projectile.setMetadata(TRAIL_META, new FixedMetadataValue(PGM.get(), shooter.getParty().getFullColor()));
+            // Set critical metadata to false in order to remove default particle trail.
+            // The metadata will be restored just before the arrow hits something.
+            if(projectile instanceof Arrow) {
+                final Arrow arrow = (Arrow) projectile;
+                arrow.setMetadata(CRITICAL_META, new FixedMetadataValue(PGM.get(), arrow.isCritical()));
+                arrow.setCritical(false);
+            }
+        });
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
